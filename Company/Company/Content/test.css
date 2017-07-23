@@ -1,0 +1,33 @@
+.menu {
+list-style: none;
+margin: 0;
+}
+.menu li {
+margin: 10px 0;
+position: relative;
+list-style-type: none;
+}
+.menu a.forName {
+width: 100%;
+color: #808285;
+text-decoration: none;
+border-left: 6px solid #ABC7EA;
+display: block;
+padding-left: 25px;
+height: 44px;
+line-height: 44px;
+font-size: 20px;
+position: relative;
+transition: 0.3s linear;
+}
+.menu a.forName:before {
+content: "";
+width: 6px;
+height: 70%;
+background: #EE997C;
+position: absolute;
+top: 15%;
+left: -12px;
+}
+
+.menu a:hover {background: #D4D8D9;}
