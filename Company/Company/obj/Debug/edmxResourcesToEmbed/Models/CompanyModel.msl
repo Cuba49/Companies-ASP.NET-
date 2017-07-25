@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CmpanyDBModelContainer" CdmEntityContainer="CmpanyDBEntities1">
+    <EntitySetMapping Name="CopanySets">
+      <EntityTypeMapping TypeName="CmpanyDBModel.CopanySet">
+        <MappingFragment StoreEntitySet="CopanySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FK_Parent" ColumnName="FK_Parent" />
+          <ScalarProperty Name="MyValue" ColumnName="MyValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

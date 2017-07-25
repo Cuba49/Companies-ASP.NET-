@@ -1,0 +1,38 @@
+﻿@model Company.Models.CopanySet
+@{
+    ViewBag.Title = "Edit Cpmpany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Company</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Company</legend>
+
+        @Html.HiddenFor(model => model.Id)
+       
+
+        <p>
+            Name company <br/>
+
+            @Html.EditorFor(model => model.Name)
+        </p>
+
+        <p>
+            Value <br />
+            @Html.EditorFor(model => model.MyValue)
+        </p>
+        <p>
+            Parent <br />
+            @Html.DropDownListFor(model => model.FK_Parent, ViewBag.Companies as SelectList)
+        </p>
+        <p>
+            <input type="submit" value="OK" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("List Companies", "Index")
+</div>

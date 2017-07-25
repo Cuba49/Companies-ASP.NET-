@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Company.Models.CopanySet>
+@{
+    ViewBag.Title = "Companies";
+}
+
+    <h1>The structure of the company</h1>
+@Html.ActionLink(" Add ", "Add", new { id = 0 })
+    <ul class="menu">
+
+        @foreach (var mp in Model.Where(p => p.FK_Parent == 0))
+        {
+
+            <li>
+                <a href="#" class="forName">@mp.Name || @mp.MyValue K$ @STRValue(mp.Id, mp.MyValue)</a>
+             @Html.ActionLink(" Add ", "Add", new { id = mp.Id })
+                @Html.ActionLink(" Edit ", "Edit", new { id = mp.Id })
+                @Html.ActionLink(" Delete ", "Delete", new { id = mp.Id })
+                @if (Model.Count(p => p.FK_Parent == mp.Id) > 0)
+                {
+                    @:<ul>
+        }
+
+                @RenderMenuItem(Model, mp)
+
+                @if (Model.Count(p => p.FK_Parent == mp.Id) > 0)
+                {
+                    @:</ul>
+        }
+
+            </li>
+        }
+    </ul>
+
+@functions 
+{ public string STRValue(int? Id, int? MyValue)
+    {
+        string str = "";
+        if (Model.Count(p => p.FK_Parent == Id) > 0)
+            str = " || " + AddValue(Id, MyValue) + " K$ ";
+        return str;
+    }
+    public int? AddValue(int? Id, int? MyValue)
+    {
+        int? result=0;
+        foreach (var cp in Model.Where(p => p.FK_Parent == Id))
+            result += AddValue(cp.Id, cp.MyValue);
+        return MyValue + result;
+    }
+}
+
+    @helper RenderMenuItem(IEnumerable<Company.Models.CopanySet> menuList, Company.Models.CopanySet mi)
+    {
+foreach (var cp in menuList.Where(p => p.FK_Parent == mi.Id))
+{
+
+
+        @:<li>
+            <a href="#" class="forName">@cp.Name || @cp.MyValue K$ @STRValue(cp.Id, cp.MyValue)</a>
+            @Html.ActionLink(" Add ", "Add", new { id = cp.Id })
+            @Html.ActionLink(" Edit ", "Edit", new { id = cp.Id })
+            @Html.ActionLink(" Delete ", "Delete", new { id = cp.Id })
+    if (menuList.Count(p => p.FK_Parent == cp.Id) > 0)
+    {
+            @:<ul>
+        }
+
+        @RenderMenuItem(menuList, cp)
+    if (menuList.Count(p => p.FK_Parent == cp.Id) > 0)
+    {
+            @:</ul>
+      }
+    else
+    {
+            @:</li>
+      }
+    }
+}
